@@ -7,6 +7,7 @@ extends Node3D
 @onready var foreground_camera = $BaseCamera/ForegroundViewportContainer/ForegroundViewport/ForegroundCamera
 
 
+## Ignore o codigo abaixo, ele provavelmente é inútil
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
@@ -15,6 +16,9 @@ extends Node3D
 #func resize():
 #	background_viewport.size = DisplayServer.window_get_size()
 #	foreground_viewport.size = DisplayServer.window_get_size()
+
+## Fim da parte inútil, ela ta ai só pro caso de acontecer alguma coisa
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
