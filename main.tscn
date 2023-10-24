@@ -26,7 +26,7 @@ environment = SubResource("Environment_2hgyg")
 [node name="World" type="Node3D" parent="."]
 
 [node name="Player" parent="World" instance=ExtResource("1_ydo52")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 29.9926, 0.51916, 3.36241)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 33.2963, 0.51916, 6.66464)
 
 [node name="Map" type="Node3D" parent="World"]
 
@@ -142,6 +142,18 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.020
 material_override = ExtResource("3_a73yr")
 use_collision = true
 size = Vector3(1, 3, 8)
+
+[node name="Wall7" type="CSGBox3D" parent="World/Map3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.10398, 1.04855, -1.67203)
+material_override = ExtResource("3_a73yr")
+use_collision = true
+size = Vector3(1, 1, 2.759)
+
+[node name="Wall8" type="CSGBox3D" parent="World/Map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.215002, 1.04855, -5.73537)
+material_override = ExtResource("3_a73yr")
+use_collision = true
+size = Vector3(1, 1, 2.759)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
