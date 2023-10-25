@@ -52,10 +52,10 @@ func _physics_process(delta):
 #			walking = false
 #			animation_player.play("idle")
 	
-#	animation_tree.set("parameters/conditions/idle", !is_player_walking())
-#	animation_tree.set("parameters/conditions/walk", is_player_walking())
+	animation_tree.set("parameters/conditions/idle", !is_player_walking())
+	animation_tree.set("parameters/conditions/walk", is_player_walking())
 	
 	move_and_slide()
 
-##func is_player_walking():
-#	return !(velocity.x == 0 and velocity.z == 0)
+func is_player_walking():
+	return !(velocity.x == 0 and velocity.z == 0)
