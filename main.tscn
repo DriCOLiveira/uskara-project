@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://d17v6mtx5d4ad"]
+[gd_scene load_steps=9 format=3 uid="uid://d17v6mtx5d4ad"]
 
 [ext_resource type="PackedScene" uid="uid://balptwicbto6c" path="res://player/player.tscn" id="1_ydo52"]
 [ext_resource type="Material" uid="uid://b6r7mcwdw4mw7" path="res://materials/floor_material.tres" id="2_lycuu"]
+[ext_resource type="PackedScene" uid="uid://dvj5074eredhk" path="res://npc/npc.tscn" id="2_wbk0w"]
 [ext_resource type="Material" uid="uid://ccje1rrdn0ue7" path="res://materials/wall_material.tres" id="3_a73yr"]
 [ext_resource type="PackedScene" uid="uid://c6scffpnvt282" path="res://player/camera_rig.tscn" id="4_pqoug"]
 
@@ -26,7 +27,10 @@ environment = SubResource("Environment_2hgyg")
 [node name="World" type="Node3D" parent="."]
 
 [node name="Player" parent="World" instance=ExtResource("1_ydo52")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 29.9926, 0.51916, 3.36241)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 33.2963, 0.51916, 6.66464)
+
+[node name="Npc" parent="World" instance=ExtResource("2_wbk0w")]
+transform = Transform3D(0.231952, 0, 0.972727, 0, 1, 0, -0.972727, 0, 0.231952, 28.3355, 0.519, -4.44049)
 
 [node name="Map" type="Node3D" parent="World"]
 
@@ -142,6 +146,18 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.020
 material_override = ExtResource("3_a73yr")
 use_collision = true
 size = Vector3(1, 3, 8)
+
+[node name="Wall7" type="CSGBox3D" parent="World/Map3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.10398, 1.04855, -1.67203)
+material_override = ExtResource("3_a73yr")
+use_collision = true
+size = Vector3(1, 1, 2.759)
+
+[node name="Wall8" type="CSGBox3D" parent="World/Map3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.215002, 1.04855, -5.73537)
+material_override = ExtResource("3_a73yr")
+use_collision = true
+size = Vector3(1, 1, 2.759)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
