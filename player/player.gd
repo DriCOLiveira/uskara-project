@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-
 const SPEED = 1.8
 const JUMP_VELOCITY = 4.5
 
@@ -11,7 +10,6 @@ var alive = true
 var state_machine
 
 var enemy
-var attack_is_possible = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -58,15 +56,13 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 
-		
 		animation_tree.set("parameters/conditions/idle", !walking)
 		animation_tree.set("parameters/conditions/walk", walking)
 		
 		move_and_slide()
 	#Alive End----------------------------------------------------------------#
-#	else:
-#		state_machine.travel("death")
-
+	else:
+		state_machine.travel("death")
 
 func _on_attack_area_body_entered(body):
 	enemy = body

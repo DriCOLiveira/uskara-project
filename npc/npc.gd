@@ -27,6 +27,9 @@ func _physics_process(delta):
 			pass
 		"pistol_point":
 			visuals.look_at(player.global_position)
+			await get_tree().create_timer(2).timeout
+			if Input.is_anything_pressed():
+				player.alive = false
 	
 #	animation_tree.set("parameters/conditions/point", _on_spot_area_body_entered())
 #	animation_tree.set("parameters/conditions/idle", !_on_spot_area_body_entered())
