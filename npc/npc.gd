@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-const SPOT_RANGE = 5.0
+#const SPOT_RANGE = 5.0
 
 var state_machine
 
@@ -38,4 +38,5 @@ func _physics_process(delta):
 #	return global_position.distance_to(player.global_position) < SPOT_RANGE
 
 func _on_spot_area_body_entered(body):
-	state_machine.travel("pistol_point")
+#	state_machine.travel("pistol_point")
+	animation_tree.set("parameters/conditions/point", true)

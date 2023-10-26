@@ -30,7 +30,7 @@ environment = SubResource("Environment_2hgyg")
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 33.2963, 0.51916, 6.66464)
 
 [node name="Npc" parent="World" instance=ExtResource("2_wbk0w")]
-transform = Transform3D(0.231952, 0, 0.972727, 0, 1, 0, -0.972727, 0, 0.231952, 28.3355, 0.519, -4.44049)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 28.2696, 0.519, -4.44049)
 
 [node name="Map" type="Node3D" parent="World"]
 
