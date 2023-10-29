@@ -14,33 +14,23 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var visuals = $Visuals
 @onready var player = GameManager.player
 @onready var animation_tree = $"Visuals/X Bot/AnimationTree"
-#@onready var spot_area = $SpotArea
+@onready var spot_area = $SpotArea
+@onready var ray = $RayCast3D
+@onready var raycast_transform = $"Visuals/X Bot/RootNode/Skeleton3D/HeadAttachment/RaycastTransform"
+
+var someone_there = false
 
 # Npc vision has a pyramid format
-@onready var vision = $Vision
-var pyramid_points 
-var new_pyramid_points
-var max_pyramid_points = PackedVector3Array( 
-	[Vector3(0, 0, 0), 
-	Vector3(-30, -10, 50),
-	Vector3(30, -10, 50),
-	Vector3(-30, 30, 50),
-	Vector3(30, 30, 50),] )
-
-var test_shape
-
-var t
+#@onready var vision = $Vision
 
 
 func _ready():
 	state_machine = animation_tree.get("parameters/playback")
 	animation_tree.set("parameters/conditions/idle", true)
-	pyramid_points = vision.get_shape().get_points()
-	test_shape = ConvexPolygonShape3D.new()
 	
 func _physics_process(delta):
-	vision_update(delta)
-	print(pyramid_points[1])
+#	vision_update()
+#	print(pyramid_points[1])
 	
 	match state_machine.get_current_node():
 		"pistol_idle":
@@ -58,9 +48,24 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
-func vision_update(d):
-	test_shape.set_points(max_pyramid_points)
-	vision.set_shape(test_shape)
+
+func _on_spot_area_body_entered(body):
+#	state_machine.travel("pistol_point")
+	someone_there = true
+	while someone_there:
+		await get_tree().create_timer(0.01).timeout
+		raycast_transform.look_at(player.global_position + Vector3(0, 1, 0))
+		if ray.get_collider() == player:
+			animation_tree.set("parameters/conditions/point", true)
+		else:
+			continue
+
+func _on_spot_area_body_exited(body):
+	someone_there = false
+
+
+#func vision_update():
+
 	
 #	for i in range(5):
 		
@@ -71,6 +76,7 @@ func vision_update(d):
 #func _is_target_spotted():
 #	return global_position.distance_to(player.global_position) < SPOT_RANGE
 
-#func _on_spot_area_body_entered(body):
-##	state_machine.travel("pistol_point")
-#	animation_tree.set("parameters/conditions/point", true)
+
+
+
+
