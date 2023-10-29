@@ -40,7 +40,7 @@ func _physics_process(delta):
 			enemy.visuals.look_at(position)
 			enemy.visuals.rotate_y(PI)
 			await get_tree().create_timer(0.4).timeout
-			enemy.state_machine.travel("death_from_the_back")
+			enemy.animation_tree.set("parameters/conditions/death", true)
 
 		# Get the input direction and handle the movement/deceleration.
 		var walking = !(velocity.x == 0 and velocity.z == 0)

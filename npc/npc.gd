@@ -14,9 +14,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var visuals = $Visuals
 @onready var player = GameManager.player
 @onready var animation_tree = $"Visuals/X Bot/AnimationTree"
-@onready var spot_area = $SpotArea
-@onready var ray = $RayCast3D
-@onready var raycast_transform = $"Visuals/X Bot/RootNode/Skeleton3D/HeadAttachment/RaycastTransform"
+@onready var spot_area = $HeadCompartment/SpotArea
+@onready var ray = $HeadCompartment/RayCast3D
+
 
 var someone_there = false
 
@@ -40,7 +40,8 @@ func _physics_process(delta):
 			await get_tree().create_timer(2).timeout
 			if Input.is_anything_pressed():
 				player.alive = false
-	
+		"death":
+			return
 	
 #	animation_tree.set("parameters/conditions/point", _on_spot_area_body_entered())
 #	animation_tree.set("parameters/conditions/idle", !_on_spot_area_body_entered())
@@ -54,7 +55,7 @@ func _on_spot_area_body_entered(body):
 	someone_there = true
 	while someone_there:
 		await get_tree().create_timer(0.01).timeout
-		raycast_transform.look_at(player.global_position + Vector3(0, 1, 0))
+		ray.look_at(player.global_position + Vector3(0, 1, 0))
 		if ray.get_collider() == player:
 			animation_tree.set("parameters/conditions/point", true)
 		else:
