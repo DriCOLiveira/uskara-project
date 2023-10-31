@@ -150,17 +150,23 @@ material_override = ExtResource("3_a73yr")
 use_collision = true
 size = Vector3(1, 1, 2.759)
 
-[node name="Wall11" type="CSGBox3D" parent="World/Map2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.51751, 1.69196, -3.29826)
-material_override = ExtResource("3_a73yr")
-use_collision = true
-size = Vector3(1, 2.5, 4)
-
 [node name="Wall10" type="CSGBox3D" parent="World/Map2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.742, 1.04855, -5.73537)
 material_override = ExtResource("3_a73yr")
 use_collision = true
 size = Vector3(1, 1, 2.759)
+
+[node name="Wall11" type="CSGBox3D" parent="World/Map2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.51751, 1.69196, -0.525763)
+material_override = ExtResource("3_a73yr")
+use_collision = true
+size = Vector3(1, 2.5, 4)
+
+[node name="Wall12" type="CSGBox3D" parent="World/Map2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.54977, 1.77242, -3.90766)
+material_override = ExtResource("3_a73yr")
+use_collision = true
+size = Vector3(1, 0.355, 2.759)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)

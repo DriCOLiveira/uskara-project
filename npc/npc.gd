@@ -5,6 +5,7 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 #const VISION_INCREASE_RATE = Vector3(1, 1, 1)
 #const SPOT_RANGE = 5.0
+const SPOT_SCAN_SPEED = 10
 
 var state_machine
 
@@ -22,6 +23,10 @@ var someone_there = false
 # Npc vision has a pyramid format
 #@onready var vision = $Vision
 
+var scan = Vector3()
+var scan_start = (Vector3(-1, 0, -1))
+var scan_width_increment = (Vector3(0.1, 0, 0.1))
+var scan_max_width = (Vector3(1, scan.y, 1))
 
 func _ready():
 	state_machine = animation_tree.get("parameters/playback")
@@ -30,7 +35,7 @@ func _ready():
 func _physics_process(delta):
 #	vision_update()
 #	print(pyramid_points[1])
-	
+#	t = delta * 0.2
 	match state_machine.get_current_node():
 		"pistol_idle":
 			pass
@@ -50,13 +55,20 @@ func _physics_process(delta):
 
 
 func _on_spot_area_body_entered(body):
+	scan = scan_start
 	someone_there = true
 	while someone_there:
 		await get_tree().create_timer(0.01).timeout
-		ray.look_at(player.global_position + Vector3(0, 1, 0))
+		ray.look_at(player.global_position + scan) 
+		scan += scan_width_increment * SPOT_SCAN_SPEED
+		
+		if scan > scan_max_width: scan = (Vector3(-1, scan.y, -1));
+		
 		if ray.get_collider() == player:
 			animation_tree.set("parameters/conditions/point", true)
 		else:
+			if scan.y > 2: scan.y = 0;
+			scan.y += 0.01 * SPOT_SCAN_SPEED
 			continue
 
 func _on_spot_area_body_exited(body):
