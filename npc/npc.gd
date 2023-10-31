@@ -19,7 +19,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 var someone_there = false
-
 # Npc vision has a pyramid format
 #@onready var vision = $Vision
 
@@ -41,7 +40,7 @@ func _physics_process(delta):
 			if Input.is_anything_pressed():
 				player.alive = false
 		"death":
-			return
+			pass
 	
 #	animation_tree.set("parameters/conditions/point", _on_spot_area_body_entered())
 #	animation_tree.set("parameters/conditions/idle", !_on_spot_area_body_entered())
@@ -51,7 +50,6 @@ func _physics_process(delta):
 
 
 func _on_spot_area_body_entered(body):
-#	state_machine.travel("pistol_point")
 	someone_there = true
 	while someone_there:
 		await get_tree().create_timer(0.01).timeout
@@ -63,21 +61,3 @@ func _on_spot_area_body_entered(body):
 
 func _on_spot_area_body_exited(body):
 	someone_there = false
-
-
-#func vision_update():
-
-	
-#	for i in range(5):
-		
-#	t = d * 0.8
-#	pyramid_points.set(1, pyramid_points[1].lerp(max_pyramid_points[1], t))
-#	pyramid_points.set(1, Vector3(10,20,30))
-
-#func _is_target_spotted():
-#	return global_position.distance_to(player.global_position) < SPOT_RANGE
-
-
-
-
-
